@@ -1,0 +1,131 @@
+/* Regole generali */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Regole container */
+.container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* Regole slider */
+.slider {
+    width: 70%;
+    height: 80vh;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Regole container principale */
+.items-container {
+    position: relative;
+}
+
+/* regole elemento singolo */
+.item {
+    display: none;
+    position: relative;
+}
+
+/* Regole contenitore titolo foto */
+.title-container {
+    position: absolute;
+    max-width: 80%;
+    padding: 0 10px 0 20px;
+    font-weight: bold;
+    color: white;
+    bottom: 20px;
+    text-align: right;
+}
+
+/* regole titolo */
+.title {
+    font-size: 20px;
+}
+
+/* Regole immagini principali */
+img {
+    height: 80vh;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Regole immagini laterali */
+.img-card {
+    width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Regole slider laterale */
+.slider-laterale {
+    height: 80vh;
+    width: 20%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 800;
+}
+
+/* Regole contenitore foto laterale */
+.card {
+    border: 1px solid black;
+    width: 100%;
+    height: 16vh;
+    position: relative;
+}
+
+/* regole layer contenitore foto laterale */
+.layer {
+    background-color: rgb(0, 0, 0, 0.5);
+    width: 100%;
+    height: 16vh;
+    position: absolute;
+}
+
+/* Regole comuni pulsanti */
+.next,
+.previous {
+    background-color: #cccccc;
+    border-radius: 100%;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 70px;
+    z-index: 900;
+}
+
+/* regole pulsante NEXT - freccia DOWN */
+.next {
+    bottom: -8px;
+}
+
+/* regole pulsante PREVIOUS - freccia UP */
+.previous {
+    bottom: 92%;
+}
+
+/* Quando attivo */
+.active {
+    display: block;
+}
+
+.bottoniControllo {
+    padding: 5px 10px;
+}
+
+/* Quando nascosto */
+.hidden {
+    display: none;
+}
