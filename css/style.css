@@ -14,7 +14,7 @@
 }
 
 /* Regole slider */
-.slider {
+#slider {
     width: 70%;
     height: 80vh;
     margin: 0 auto;
@@ -126,6 +126,6 @@ img {
 }
 
 /* Quando nascosto */
-.hidden {
+.show {
     display: none;
 }
