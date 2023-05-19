@@ -62,14 +62,14 @@ createApp ({
         }
     },
     methods: {
-        fotoSu() {
+        fotoGiu() {
             reverse = true;                                // Reverse diventa TRUE
             this.itemAttivo++;                             // Incremento valore dell' ITEM ATTIVO
             if (this.itemAttivo === this.card.length) {    // SE mi trovo nell'ULTIMA foto
                 this.itemAttivo = 0;                       // Faccio in modo di ritornare alla PRIMA foto
             }
         },
-        fotoGiu(){
+        fotoSu(){
             reverse = false;                               // Reverse diventa FALSE
             this.itemAttivo--;                             // Decremento valore dell' ITEM ATTIVO
             if (this.itemAttivo < 0) {                     // SE mi trovo nella PRIMA foto
@@ -78,9 +78,9 @@ createApp ({
         },
         autoPlay() {
             if (reverse == false) {                  
-                clock = setInterval(this.fotoGiu, secondi);
-            } else {                                
                 clock = setInterval(this.fotoSu, secondi);
+            } else {                                
+                clock = setInterval(this.fotoGiu, secondi);
             }
         },
         ferma() {
@@ -89,9 +89,9 @@ createApp ({
         inverti() {
             clearInterval(clock);
             if (reverse == true) {                  
-                clock = setInterval(this.fotoGiu, secondi);
-            } else {                                
                 clock = setInterval(this.fotoSu, secondi);
+            } else {                                
+                clock = setInterval(this.fotoGiu, secondi);
             }
         }
     },
