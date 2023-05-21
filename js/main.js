@@ -7,6 +7,8 @@ Bonus:
 3-quando il mouse va in hover sullo slider, bloccare l’autoplay e farlo riprendere quando esce
 */
 
+
+// Inietto all'interno di ".items-container" il DIV contenente FOTO, TITOLO e SOTTOTITOLO
 document.querySelector('.items-container').innerHTML +=
 `<div v-for="(item, index) in card" class="item" :class="itemAttivo === index ? 'active' : ''">
     <img :src="item.image" :alt="item.image">
@@ -14,25 +16,27 @@ document.querySelector('.items-container').innerHTML +=
         <div class="title">{{item.title}}</div>
         <div class="subtitle">{{item.text}}</div>
     </div>   
-</div>`
+</div>`;
 
+// Inietto all'interno di ".slider-laterale il DIV contenente le thumbnails
 document.querySelector('.slider-laterale').innerHTML +=
 `<div v-for="(item, index) in card" class="card">
     <div class="layer" :class="itemAttivo === index ? 'show' : ''"></div>
     <img class="img-card" :src="item.image" :alt="item.image">
-</div>`
-
-let reverse;
-let secondi = 3 * 1000;
+</div>`;
 
 
+// Setto in una costante la proprietà createApp presa da Vue
 const {createApp} = Vue;
 
 createApp ({
     data (){
         return {
-            itemAttivo: 0,
-            card: [
+            reverse: true,          // Setto reverse TRUE (default)
+            itemAttivo: 0,          // Setto itemAttivo a 0 (il primo) (default)
+            secondi: 3 * 1000,      // Setto i secondi a 3
+            clock: "",              // Dichiaro clock
+            card: [ 
                 {
                     image: 'img/01.webp',
                     title: "Marvel's Spiderman Miles Morale",
@@ -63,39 +67,40 @@ createApp ({
     },
     methods: {
         fotoGiu() {
-            reverse = true;                                // Reverse diventa TRUE
+            this.reverse = true;                           // Reverse diventa TRUE
             this.itemAttivo++;                             // Incremento valore dell' ITEM ATTIVO
             if (this.itemAttivo === this.card.length) {    // SE mi trovo nell'ULTIMA foto
                 this.itemAttivo = 0;                       // Faccio in modo di ritornare alla PRIMA foto
             }
         },
         fotoSu(){
-            reverse = false;                               // Reverse diventa FALSE
+            this.reverse = false;                          // Reverse diventa FALSE
             this.itemAttivo--;                             // Decremento valore dell' ITEM ATTIVO
             if (this.itemAttivo < 0) {                     // SE mi trovo nella PRIMA foto
                 this.itemAttivo = this.card.length - 1;    // Faccio in modo di ritornare all'UTLIMA foto
             }
         },
         autoPlay() {
-            if (reverse == false) {                  
-                clock = setInterval(this.fotoSu, secondi);
-            } else {                                
-                clock = setInterval(this.fotoGiu, secondi);
+            clearInterval(this.clock);                                      // Elimino clock già attivi
+            if (this.reverse == false) {                                    // SE reverse è false
+                this.clock = setInterval(this.fotoSu, this.secondi);        // Continuo con fotoSu (precedente)
+            } else {                                                        // ALTRIMENTI (reverse = true)
+                this.clock = setInterval(this.fotoGiu, this.secondi);       // Continuo con fotoGiu (successiva)
             }
         },
         ferma() {
-            clearInterval(clock)
+            clearInterval(this.clock);                                      // Elimino clock già attivi
         },
         inverti() {
-            clearInterval(clock);
-            if (reverse == true) {                  
-                clock = setInterval(this.fotoSu, secondi);
-            } else {                                
-                clock = setInterval(this.fotoGiu, secondi);
+            clearInterval(this.clock);                                      // Elimino clock già attivi
+            if (this.reverse == true) {                                     // SE reverse è true
+                this.clock = setInterval(this.fotoSu, this.secondi);        // Continuo con fotoSu (precedente)
+            } else {                                                        // ALTRIMENTI (reverse = false)
+                this.clock = setInterval(this.fotoGiu, this.secondi);       // Continuo con fotoGiu (successiva)
             }
         }
     },
     mounted() {
-        this.autoPlay()
+        this.autoPlay();                                                    // Al caricamento della pagina eseguo la funzione autoPlay
     }
-}).mount("#slider")
+}).mount("#slider")                                                         // Monto la proprietà createApp nell'ID slider nell'HTML
