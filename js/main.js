@@ -21,7 +21,7 @@ document.querySelector('.items-container').innerHTML +=
 // Inietto all'interno di ".slider-laterale il DIV contenente le thumbnails
 document.querySelector('.slider-laterale').innerHTML +=
 `<div v-for="(item, index) in card" class="card">
-    <div class="layer" :class="itemAttivo === index ? 'show' : ''"></div>
+    <div @click="itemAttivo = index" class="layer" :class="itemAttivo === index ? 'show' : ''"></div>
     <img class="img-card" :src="item.image" :alt="item.image">
 </div>`;
 
