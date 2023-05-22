@@ -10,11 +10,11 @@ Bonus:
 
 // Inietto all'interno di ".items-container" il DIV contenente FOTO, TITOLO e SOTTOTITOLO
 document.querySelector('.items-container').innerHTML +=
-`<div v-for="(item, index) in card" class="item" :class="itemAttivo === index ? 'active' : ''">
-    <img :src="item.image" :alt="item.image">
+`<div class="item active">
+    <img :src="card[itemAttivo].image" :alt="card[itemAttivo].image">
     <div class="title-container">
-        <div class="title">{{item.title}}</div>
-        <div class="subtitle">{{item.text}}</div>
+        <div class="title">{{card[itemAttivo].title}}</div>
+        <div class="subtitle">{{card[itemAttivo].text}}</div>
     </div>   
 </div>`;
 
